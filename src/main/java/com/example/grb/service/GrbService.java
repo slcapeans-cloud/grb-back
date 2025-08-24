@@ -2,6 +2,9 @@ package com.example.grb.service;
 
 import com.example.grb.model.Grb;
 import com.example.grb.repository.IGrbRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +35,9 @@ public class GrbService implements IGrbService {
     }
 
     @Override
+    @Transactional
     public List<Grb> findAll() {
-        return iGrbRepository.findAll();
+        return iGrbRepository.findAllByOrderByIdGrbDesc();
     }
 
     @Override
